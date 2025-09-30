@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Rolex Submariner - AuctionHub</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Additional styles for product page */
+        .product-container {
+            max-width: 1200px;
+            margin: 120px auto 2rem;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .product-images {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail-images {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .thumbnail.active {
+            border-color: #667eea;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 2rem 0;
+        }
+
+        .product-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .product-condition {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .auction-status-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        .price-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .current-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 0.5rem;
+        }
+
+        .bid-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .timer-section {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .timer-label {
+            font-size: 1.1rem;
+            color: #856404;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .time-unit {
+            text-align: center;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-width: 70px;
+        }
+
+        .time-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #dc3545;
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .bid-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .bid-input-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bid-input-container input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+
+        .bid-input-container button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        .quick-bid-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .quick-bid-btn {
+            padding: 0.5rem 1rem;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .quick-bid-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .watch-btn {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .watch-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .product-description {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .description-tabs {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 2rem;
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .specs-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .specs-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .specs-list li:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .spec-value {
+            color: #666;
+        }
+
+        .bid-history {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .bid-history h3 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .bid-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .bid-item:last-child {
+            border-bottom: none;
+        }
+
+        .bidder-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .bidder-avatar {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .bid-amount {
+            font-weight: bold;
+            color: #28a745;
+            font-size: 1.1rem;
+        }
+
+        .bid-time {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-top: 100px;
+            }
+
+            .product-title {
+                font-size: 2rem;
+            }
+
+            .current-price {
+                font-size: 2rem;
+            }
+
+            .countdown-timer {
+                flex-wrap: wrap;
+            }
+
+            .bid-input-container {
+                flex-direction: column;
+            }
+
+            .description-tabs {
+                overflow-x: auto;
+            }
+
+            .tab-button {
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (same as index.html) -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><i class="fas fa-gavel"></i> AuctionHub</h1>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#auctions">Live Auctions</a></li>
+                    <li><a href="index.html#categories">Categories</a></li>
+                    <li><a href="sell.html">Sell Item</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="login.html" class="btn-secondary">Login</a>
+                <a href="signup.html" class="btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Product Detail -->
+    <div class="product-container">
+        <!-- Breadcrumb Navigation -->
+        <nav style="margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; color: #666; font-size: 0.9rem;">
+                <a href="index.html" style="color: #667eea; text-decoration: none;">Home</a>
+                <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+                <a href="index.html#auctions" style="color: #667eea; text-decoration: none;">Live Auctions</a>
+                <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+                <span>Vintage Rolex Submariner</span>
+            </div>
+        </nav>
+
+        <!-- Product Images -->
+        <div class="product-images">
+            <div class="main-image">
+                <img id="mainProductImage" src="https://via.placeholder.com/500x400?text=Vintage+Rolex+Submariner+Main" alt="Vintage Rolex Submariner">
+            </div>
+            <div class="thumbnail-images">
+                <div class="thumbnail active" onclick="changeMainImage(this, 'https://via.placeholder.com/500x400?text=Vintage+Rolex+Submariner+Main')">
+                    <img src="https://via.placeholder.com/80x80?text=Main" alt="Main view">
+                </div>
+                <div class="thumbnail" onclick="changeMainImage(this, 'https://via.placeholder.com/500x400?text=Rolex+Side+View')">
+                    <img src="https://via.placeholder.com/80x80?text=Side" alt="Side view">
+                </div>
+                <div class="thumbnail" onclick="changeMainImage(this, 'https://via.placeholder.com/500x400?text=Rolex+Back+View')">
+                    <img src="https://via.placeholder.com/80x80?text=Back" alt="Back view">
+                </div>
+                <div class="thumbnail" onclick="changeMainImage(this, 'https://via.placeholder.com/500x400?text=Rolex+Detail+View')">
+                    <img src="https://via.placeholder.com/80x80?text=Detail" alt="Detail view">
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Details -->
+        <div class="product-details">
+            <h1 class="product-title">Vintage Rolex Submariner</h1>
+            <span class="product-condition">Excellent Condition</span>
+            <span class="auction-status-badge">LIVE AUCTION</span>
+
+            <!-- Price Section -->
+            <div class="price-section">
+                <div class="current-price">$8,500</div>
+                <div class="bid-info">
+                    <span>23 bids</span>
+                    <span>Starting bid: $5,000</span>
+                </div>
+                <div class="bid-info">
+                    <span>Reserve: Not met</span>
+                    <span>Buy it now: $15,000</span>
+                </div>
+            </div>
+
+            <!-- Timer -->
+            <div class="timer-section">
+                <div class="timer-label">Auction ends in:</div>
+                <div class="countdown-timer" id="countdownTimer">
+                    <div class="time-unit">
+                        <span class="time-number" id="hours">02</span>
+                        <span class="time-label">Hours</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-number" id="minutes">15</span>
+                        <span class="time-label">Minutes</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-number" id="seconds">30</span>
+                        <span class="time-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bidding Section -->
+            <div class="bid-section">
+                <h3>Place Your Bid</h3>
+                <div class="quick-bid-buttons">
+                    <button class="quick-bid-btn" onclick="setQuickBid(8550)">$8,550</button>
+                    <button class="quick-bid-btn" onclick="setQuickBid(8600)">$8,600</button>
+                    <button class="quick-bid-btn" onclick="setQuickBid(8700)">$8,700</button>
+                    <button class="quick-bid-btn" onclick="setQuickBid(8800)">$8,800</button>
+                    <button class="quick-bid-btn" onclick="setQuickBid(9000)">$9,000</button>
+                </div>
+                <div class="bid-input-container">
+                    <input type="number" id="bidAmount" placeholder="Enter your bid" min="8501" step="1">
+                    <button class="btn-primary" onclick="submitBid()">Place Bid</button>
+                </div>
+                <button class="watch-btn" onclick="addToWatchlist()">
+                    <i class="fas fa-heart"></i> Add to Watchlist
+                </button>
+                <p style="font-size: 0.9rem; color: #666; text-align: center;">
+                    By bidding, you agree to our <a href="#" style="color: #667eea;">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Description -->
+    <div class="container">
+        <div class="product-description">
+            <div class="description-tabs">
+                <button class="tab-button active" onclick="showTab('description')">Description</button>
+                <button class="tab-button" onclick="showTab('specifications')">Specifications</button>
+                <button class="tab-button" onclick="showTab('shipping')">Shipping & Returns</button>
+                <button class="tab-button" onclick="showTab('seller')">Seller Info</button>
+            </div>
+
+            <div id="description" class="tab-content active">
+                <h3>Item Description</h3>
+                <p>This stunning vintage Rolex Submariner from the 1970s is a collector's dream. The watch features the iconic black dial and bezel combination that made the Submariner legendary. Despite its age, the timepiece maintains excellent condition with minimal wear on the case and bracelet.</p>
+                
+                <p>The automatic movement has been recently serviced by a certified Rolex technician and keeps excellent time. All original components are intact, including the crown, caseback, and crystal. The luminous hour markers and hands still glow brightly.</p>
+                
+                <p>This particular model is highly sought after by collectors due to its historical significance and rarity. The serial number dates it to 1976, making it a true vintage piece with documented provenance.</p>
+                
+                <h4>Included with Purchase:</h4>
+                <ul>
+                    <li>Original Rolex box (slightly worn)</li>
+                    <li>Certificate of authenticity</li>
+                    <li>Recent service documentation</li>
+                    <li>Additional leather strap</li>
+                </ul>
+            </div>
+
+            <div id="specifications" class="tab-content">
+                <h3>Technical Specifications</h3>
+                <ul class="specs-list">
+                    <li><span class="spec-label">Brand:</span> <span class="spec-value">Rolex</span></li>
+                    <li><span class="spec-label">Model:</span> <span class="spec-value">Submariner</span></li>
+                    <li><span class="spec-label">Reference:</span> <span class="spec-value">5513</span></li>
+                    <li><span class="spec-label">Year:</span> <span class="spec-value">1976</span></li>
+                    <li><span class="spec-label">Case Material:</span> <span class="spec-value">Stainless Steel</span></li>
+                    <li><span class="spec-label">Case Size:</span> <span class="spec-value">40mm</span></li>
+                    <li><span class="spec-label">Movement:</span> <span class="spec-value">Automatic, Cal. 1520</span></li>
+                    <li><span class="spec-label">Water Resistance:</span> <span class="spec-value">200m</span></li>
+                    <li><span class="spec-label">Bracelet:</span> <span class="spec-value">Original Oyster bracelet</span></li>
+                    <li><span class="spec-label">Crystal:</span> <span class="spec-value">Acrylic (original)</span></li>
+                    <li><span class="spec-label">Condition:</span> <span class="spec-value">Excellent</span></li>
+                </ul>
+            </div>
+
+            <div id="shipping" class="tab-content">
+                <h3>Shipping & Returns</h3>
+                <h4>Shipping Options:</h4>
+                <ul>
+                    <li><strong>Standard Shipping:</strong> 5-7 business days - Free</li>
+                    <li><strong>Express Shipping:</strong> 2-3 business days - $25</li>
+                    <li><strong>Overnight Shipping:</strong> Next business day - $50</li>
+                </ul>
+                
+                <h4>Insurance & Security:</h4>
+                <p>All items are fully insured during shipping and require signature confirmation. Items over $5,000 are shipped via armored courier service at no additional cost.</p>
+                
+                <h4>Return Policy:</h4>
+                <p>30-day return policy for authenticity issues only. Item must be returned in same condition. Buyer pays return shipping unless item is not as described.</p>
+                
+                <h4>International Shipping:</h4>
+                <p>Available to most countries. Additional customs fees may apply. Contact seller for international shipping quote.</p>
+            </div>
+
+            <div id="seller" class="tab-content">
+                <h3>Seller Information</h3>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div style="width: 60px; height: 60px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: bold;">
+                        VW
+                    </div>
+                    <div>
+                        <h4>Vintage Watches Pro</h4>
+                        <p style="margin: 0; color: #666;">Member since 2018</p>
+                        <div style="color: #ffd700; margin-top: 0.25rem;">
+                            ★★★★★ (4.9/5) • 1,247 sales
+                        </div>
+                    </div>
+                </div>
+                
+                <p>Vintage Watches Pro is a certified dealer specializing in luxury vintage timepieces. With over 15 years of experience in the watch industry, we guarantee the authenticity and quality of every piece we sell.</p>
+                
+                <h4>Seller Highlights:</h4>
+                <ul>
+                    <li>✓ Certified Rolex dealer</li>
+                    <li>✓ 99.2% positive feedback</li>
+                    <li>✓ Expert authentication process</li>
+                    <li>✓ 30-day return guarantee</li>
+                    <li>✓ Lifetime authenticity guarantee</li>
+                </ul>
+                
+                <div style="margin-top: 1.5rem;">
+                    <button class="btn-secondary" style="margin-right: 1rem;">View Other Items</button>
+                    <button class="btn-secondary">Contact Seller</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bid History -->
+        <div class="bid-history">
+            <h3>Recent Bids</h3>
+            <div class="bid-item">
+                <div class="bidder-info">
+                    <div class="bidder-avatar">JD</div>
+                    <div>
+                        <div style="font-weight: 600;">j***d</div>
+                        <div class="bid-time">2 minutes ago</div>
+                    </div>
+                </div>
+                <div class="bid-amount">$8,500</div>
+            </div>
+            <div class="bid-item">
+                <div class="bidder-info">
+                    <div class="bidder-avatar">MK</div>
+                    <div>
+                        <div style="font-weight: 600;">m***k</div>
+                        <div class="bid-time">5 minutes ago</div>
+                    </div>
+                </div>
+                <div class="bid-amount">$8,400</div>
+            </div>
+            <div class="bid-item">
+                <div class="bidder-info">
+                    <div class="bidder-avatar">RS</div>
+                    <div>
+                        <div style="font-weight: 600;">r***s</div>
+                        <div class="bid-time">8 minutes ago</div>
+                    </div>
+                </div>
+                <div class="bid-amount">$8,250</div>
+            </div>
+            <div class="bid-item">
+                <div class="bidder-info">
+                    <div class="bidder-avatar">AL</div>
+                    <div>
+                        <div style="font-weight: 600;">a***l</div>
+                        <div class="bid-time">12 minutes ago</div>
+                    </div>
+                </div>
+                <div class="bid-amount">$8,100</div>
+            </div>
+            <div class="bid-item">
+                <div class="bidder-info">
+                    <div class="bidder-avatar">TW</div>
+                    <div>
+                        <div style="font-weight: 600;">t***w</div>
+                        <div class="bid-time">18 minutes ago</div>
+                    </div>
+                </div>
+                <div class="bid-amount">$8,000</div>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 3rem; padding: 2rem;">
+            <a href="index.html#auctions" class="btn-primary">
+                <i class="fas fa-arrow-left"></i> Back to Auctions
+            </a>
+            <a href="sell.html" class="btn-secondary">
+                <i class="fas fa-plus"></i> Sell Your Item
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-gavel"></i> AuctionHub</h3>
+                    <p>Your trusted online auction platform for unique finds and great deals.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#categories">Categories</a></li>
+                        <li><a href="sell.html">Sell Items</a></li>
+                        <li><a href="index.html#auctions">Live Auctions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="seller-agreement.html">Seller Agreement</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="privacy.html#cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="help.html#guide-safety">Safety Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AuctionHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="product.js"></script>
+</body>
+</html>

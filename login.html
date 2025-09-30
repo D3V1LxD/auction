@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AuctionHub</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Login page specific styles */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem 1rem;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .login-header .logo {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .login-header h1 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: #666;
+            margin: 0;
+        }
+
+        .login-form {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 1rem;
+            top: 2.75rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .form-group.has-error input {
+            border-color: #dc3545;
+        }
+
+        .form-group.has-error .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 2.75rem;
+            color: #666;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: #667eea;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .remember-me label {
+            margin: 0;
+            font-weight: normal;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: #5a6fd8;
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+            color: #666;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e9ecef;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 1rem;
+        }
+
+        .social-login {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            background: white;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            border-color: #667eea;
+            background: #f8f9fa;
+        }
+
+        .social-btn.google {
+            border-color: #ea4335;
+            color: #ea4335;
+        }
+
+        .social-btn.google:hover {
+            background: #ea4335;
+            color: white;
+        }
+
+        .social-btn.facebook {
+            border-color: #1877f2;
+            color: #1877f2;
+        }
+
+        .social-btn.facebook:hover {
+            background: #1877f2;
+            color: white;
+        }
+
+        .signup-link {
+            text-align: center;
+            color: #666;
+        }
+
+        .signup-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            opacity: 0.8;
+        }
+
+        .demo-credentials {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .demo-credentials h4 {
+            color: #333;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .demo-credentials p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .demo-credentials .demo-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.25rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 1rem;
+            }
+
+            .login-card {
+                padding: 2rem;
+            }
+
+            .back-to-home {
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+            }
+
+            .social-login {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <a href="index.html" class="back-to-home">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo">
+                    <i class="fas fa-gavel"></i> AuctionHub
+                </div>
+                <h1>Welcome Back!</h1>
+                <p>Sign in to your account to continue bidding and selling</p>
+            </div>
+
+            <!-- Demo Credentials -->
+            <div class="demo-credentials">
+                <h4><i class="fas fa-info-circle"></i> Demo Credentials</h4>
+                <div class="demo-item">
+                    <span>Buyer Account:</span>
+                    <span>buyer@demo.com</span>
+                </div>
+                <div class="demo-item">
+                    <span>Seller Account:</span>
+                    <span>seller@demo.com</span>
+                </div>
+                <div class="demo-item">
+                    <span>Password:</span>
+                    <span>demo123</span>
+                </div>
+                <p>Use these credentials to explore the platform</p>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" name="username" required placeholder="Enter your username">
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                    <button type="button" class="password-toggle" onclick="togglePassword(this)">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        <label for="rememberMe">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password" onclick="forgotPassword()">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Sign In
+                </button>
+            </form>
+
+            <div class="divider">
+                <span>or continue with</span>
+            </div>
+
+            <div class="social-login">
+                <a href="#" class="social-btn google" onclick="socialLogin('google')">
+                    <i class="fab fa-google"></i>
+                    Google
+                </a>
+                <a href="#" class="social-btn facebook" onclick="socialLogin('facebook')">
+                    <i class="fab fa-facebook-f"></i>
+                    Facebook
+                </a>
+            </div>
+
+            <div class="signup-link">
+                Don't have an account? <a href="signup.html">Sign up here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password toggle functionality
+        const passwordInput = document.getElementById('password');
+        const passwordToggle = document.getElementById('passwordToggle');
+
+        passwordToggle.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            if (type === 'password') {
+                passwordToggle.classList.remove('fa-eye-slash');
+                passwordToggle.classList.add('fa-eye');
+            } else {
+                passwordToggle.classList.remove('fa-eye');
+                passwordToggle.classList.add('fa-eye-slash');
+            }
+        });
+
+        // Form validation and submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+            
+            // Clear previous errors
+            clearErrors();
+            
+            // Basic validation
+            let hasErrors = false;
+            
+            if (!email) {
+                showError('email', 'Email is required');
+                hasErrors = true;
+            } else if (!isValidEmail(email)) {
+                showError('email', 'Please enter a valid email address');
+                hasErrors = true;
+            }
+            
+            if (!password) {
+                showError('password', 'Password is required');
+                hasErrors = true;
+            } else if (password.length < 6) {
+                showError('password', 'Password must be at least 6 characters');
+                hasErrors = true;
+            }
+            
+            if (hasErrors) {
+                return;
+            }
+            
+            // Show loading state
+            loginBtn.disabled = true;
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+            
+            // Simulate login process
+            setTimeout(() => {
+                // Check demo credentials
+                if ((email === 'buyer@demo.com' || email === 'seller@demo.com') && password === 'demo123') {
+                    // Successful login
+                    showMessage('Login successful! Redirecting...', 'success');
+                    
+                    setTimeout(() => {
+                        // Store user info in localStorage (for demo purposes)
+                        localStorage.setItem('user', JSON.stringify({
+                            email: email,
+                            type: email.includes('buyer') ? 'buyer' : 'seller',
+                            name: email.includes('buyer') ? 'Demo Buyer' : 'Demo Seller',
+                            loggedIn: true
+                        }));
+                        
+                        // Redirect to home page
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else {
+                    // Invalid credentials
+                    showError('password', 'Invalid email or password');
+                    loginBtn.disabled = false;
+                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+                }
+            }, 2000);
+        });
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function showError(fieldName, message) {
+            const field = document.getElementById(fieldName);
+            const formGroup = field.closest('.form-group');
+            const errorMessage = formGroup.querySelector('.error-message');
+            
+            formGroup.classList.add('has-error');
+            errorMessage.textContent = message;
+        }
+
+        function clearErrors() {
+            const formGroups = document.querySelectorAll('.form-group');
+            formGroups.forEach(group => {
+                group.classList.remove('has-error');
+                const errorMessage = group.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.textContent = '';
+                }
+            });
+        }
+
+        function showMessage(text, type) {
+            // Remove any existing messages
+            const existingMessages = document.querySelectorAll('.message');
+            existingMessages.forEach(msg => msg.remove());
+            
+            const message = document.createElement('div');
+            message.className = `message ${type}`;
+            message.style.cssText = `
+                position: fixed;
+                top: 2rem;
+                right: 2rem;
+                background: ${type === 'success' ? '#28a745' : '#dc3545'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                z-index: 1000;
+                font-weight: 500;
+            `;
+            message.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle'}"></i>
+                ${text}
+            `;
+            
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.style.opacity = '0';
+                message.style.transform = 'translateX(100%)';
+                setTimeout(() => message.remove(), 300);
+            }, 5000);
+        }
+
+        function forgotPassword() {
+            const email = prompt('Please enter your email address to reset your password:');
+            if (email && isValidEmail(email)) {
+                showMessage('Password reset link sent to your email!', 'success');
+            } else if (email) {
+                alert('Please enter a valid email address.');
+            }
+        }
+
+        function socialLogin(provider) {
+            showMessage(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login would be implemented here`, 'success');
+        }
+
+        // Auto-fill demo credentials when clicking on them
+        document.querySelectorAll('.demo-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const text = this.textContent;
+                if (text.includes('buyer@demo.com')) {
+                    document.getElementById('email').value = 'buyer@demo.com';
+                    document.getElementById('password').value = 'demo123';
+                } else if (text.includes('seller@demo.com')) {
+                    document.getElementById('email').value = 'seller@demo.com';
+                    document.getElementById('password').value = 'demo123';
+                }
+            });
+        });
+
+        // Add some visual feedback to form fields
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.closest('.form-group').style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.closest('.form-group').style.transform = 'scale(1)';
+            });
+        });
+    </script>
+    
+    <!-- API Configuration -->
+    <script src="js/api-config.js"></script>
+    <!-- Authentication JavaScript -->
+    <script src="js/auth.js"></script>
+</body>
+</html>

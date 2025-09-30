@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Your Item - AuctionHub</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Additional styles for sell page */
+        .sell-container {
+            max-width: 800px;
+            margin: 120px auto 2rem;
+            padding: 0 20px;
+        }
+
+        .sell-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .sell-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .sell-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .sell-form {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-section h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-section h3 i {
+            color: #667eea;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .image-upload {
+            border: 2px dashed #e9ecef;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .image-upload:hover {
+            border-color: #667eea;
+            background: #f8f9fa;
+        }
+
+        .image-upload.dragover {
+            border-color: #667eea;
+            background: #e8f0fe;
+        }
+
+        .image-upload i {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .image-upload p {
+            color: #666;
+            margin: 0;
+        }
+
+        .image-upload input[type="file"] {
+            display: none;
+        }
+
+        .image-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .image-preview-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .image-preview-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .image-preview-item .remove-image {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(220, 53, 69, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .price-input-group {
+            position: relative;
+        }
+
+        .price-input-group .currency-symbol {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .price-input-group input {
+            padding-left: 2.5rem;
+        }
+
+        .auction-type-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .auction-type-option {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auction-type-option:hover {
+            border-color: #667eea;
+            background: #f8f9fa;
+        }
+
+        .auction-type-option.selected {
+            border-color: #667eea;
+            background: #e8f0fe;
+        }
+
+        .auction-type-option input[type="radio"] {
+            display: none;
+        }
+
+        .auction-type-option i {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .auction-type-option h4 {
+            margin: 0 0 0.5rem 0;
+            color: #333;
+        }
+
+        .auction-type-option p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .datetime-input {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .fee-breakdown {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .fee-breakdown h4 {
+            margin: 0 0 1rem 0;
+            color: #333;
+        }
+
+        .fee-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .fee-item.total {
+            border-top: 1px solid #dee2e6;
+            padding-top: 0.5rem;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            margin-top: 0.25rem;
+        }
+
+        .terms-checkbox label {
+            margin: 0;
+            font-weight: normal;
+            line-height: 1.5;
+        }
+
+        .submit-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .submit-buttons button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-draft {
+            background: #6c757d;
+            color: white;
+            border: none;
+        }
+
+        .btn-draft:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .help-text {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .character-count {
+            font-size: 0.8rem;
+            color: #666;
+            text-align: right;
+            margin-top: 0.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .sell-container {
+                margin-top: 100px;
+            }
+
+            .sell-header h1 {
+                font-size: 2rem;
+            }
+
+            .sell-form {
+                padding: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .datetime-input {
+                grid-template-columns: 1fr;
+            }
+
+            .submit-buttons {
+                flex-direction: column;
+            }
+
+            .auction-type-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><i class="fas fa-gavel"></i> AuctionHub</h1>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#auctions">Live Auctions</a></li>
+                    <li><a href="index.html#categories">Categories</a></li>
+                    <li><a href="sell.html">Sell Item</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="login.html" class="btn-secondary">Login</a>
+                <a href="signup.html" class="btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sell Page Content -->
+    <div class="sell-container">
+        <div class="sell-header">
+            <h1>Sell Your Item</h1>
+            <p>List your item for auction and reach thousands of potential buyers. Our platform makes it easy to sell everything from collectibles to electronics.</p>
+        </div>
+
+        <form class="sell-form" id="sellForm">
+            <!-- Item Information -->
+            <div class="form-section">
+                <h3><i class="fas fa-info-circle"></i> Item Information</h3>
+                
+                <div class="form-group">
+                    <label for="itemTitle">Item Title *</label>
+                    <input type="text" id="itemTitle" name="itemTitle" required maxlength="80">
+                    <div class="character-count">0/80 characters</div>
+                    <div class="help-text">Create a descriptive title that buyers will search for</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemCategory">Category *</label>
+                    <select id="itemCategory" name="itemCategory" required>
+                        <option value="">Select a category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="antiques">Antiques & Collectibles</option>
+                        <option value="art">Art & Paintings</option>
+                        <option value="jewelry">Jewelry & Watches</option>
+                        <option value="vehicles">Vehicles</option>
+                        <option value="home">Home & Garden</option>
+                        <option value="fashion">Fashion & Accessories</option>
+                        <option value="books">Books & Manuscripts</option>
+                        <option value="sports">Sports & Recreation</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemCondition">Condition *</label>
+                    <select id="itemCondition" name="itemCondition" required>
+                        <option value="">Select condition</option>
+                        <option value="new">New</option>
+                        <option value="like-new">Like New</option>
+                        <option value="excellent">Excellent</option>
+                        <option value="very-good">Very Good</option>
+                        <option value="good">Good</option>
+                        <option value="fair">Fair</option>
+                        <option value="poor">Poor</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemDescription">Description *</label>
+                    <textarea id="itemDescription" name="itemDescription" required maxlength="2000" placeholder="Describe your item in detail. Include dimensions, materials, history, condition details, and any flaws or repairs."></textarea>
+                    <div class="character-count">0/2000 characters</div>
+                    <div class="help-text">Detailed descriptions help buyers make informed decisions</div>
+                </div>
+            </div>
+
+            <!-- Images -->
+            <div class="form-section">
+                <h3><i class="fas fa-images"></i> Images</h3>
+                
+                <div class="form-group">
+                    <label>Upload Images (Maximum 10 images) *</label>
+                    <div class="image-upload" onclick="document.getElementById('imageInput').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload or drag and drop images here</p>
+                        <p style="font-size: 0.8rem; margin-top: 0.5rem;">JPG, PNG, WEBP up to 10MB each</p>
+                    </div>
+                    <input type="file" id="imageInput" multiple accept="image/*" onchange="handleImageUpload(this)">
+                    <div class="image-preview" id="imagePreview"></div>
+                    <div class="help-text">High-quality images increase your chances of successful sales. Include multiple angles and detail shots.</div>
+                </div>
+            </div>
+
+            <!-- Auction Settings -->
+            <div class="form-section">
+                <h3><i class="fas fa-gavel"></i> Auction Settings</h3>
+                
+                <div class="form-group">
+                    <label>Auction Type *</label>
+                    <div class="auction-type-options">
+                        <div class="auction-type-option" onclick="selectAuctionType('standard')">
+                            <input type="radio" name="auctionType" value="standard" id="standard">
+                            <i class="fas fa-clock"></i>
+                            <h4>Standard Auction</h4>
+                            <p>Traditional bidding with highest bid wins</p>
+                        </div>
+                        <div class="auction-type-option" onclick="selectAuctionType('reserve')">
+                            <input type="radio" name="auctionType" value="reserve" id="reserve">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Reserve Auction</h4>
+                            <p>Set a minimum price that must be met</p>
+                        </div>
+                        <div class="auction-type-option" onclick="selectAuctionType('buynow')">
+                            <input type="radio" name="auctionType" value="buynow" id="buynow">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h4>Buy It Now</h4>
+                            <p>Allow immediate purchase at fixed price</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startingBid">Starting Bid *</label>
+                        <div class="price-input-group">
+                            <span class="currency-symbol">$</span>
+                            <input type="number" id="startingBid" name="startingBid" required min="1" step="0.01" placeholder="0.00">
+                        </div>
+                        <div class="help-text">Lower starting bids often attract more bidders</div>
+                    </div>
+                    
+                    <div class="form-group" id="reservePriceGroup" style="display: none;">
+                        <label for="reservePrice">Reserve Price</label>
+                        <div class="price-input-group">
+                            <span class="currency-symbol">$</span>
+                            <input type="number" id="reservePrice" name="reservePrice" min="1" step="0.01" placeholder="0.00">
+                        </div>
+                        <div class="help-text">Minimum price you'll accept</div>
+                    </div>
+                    
+                    <div class="form-group" id="buyNowPriceGroup" style="display: none;">
+                        <label for="buyNowPrice">Buy It Now Price</label>
+                        <div class="price-input-group">
+                            <span class="currency-symbol">$</span>
+                            <input type="number" id="buyNowPrice" name="buyNowPrice" min="1" step="0.01" placeholder="0.00">
+                        </div>
+                        <div class="help-text">Price for immediate purchase</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="auctionDuration">Auction Duration *</label>
+                        <select id="auctionDuration" name="auctionDuration" required>
+                            <option value="">Select duration</option>
+                            <option value="1">1 Day</option>
+                            <option value="3">3 Days</option>
+                            <option value="5">5 Days</option>
+                            <option value="7">7 Days</option>
+                            <option value="10">10 Days</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="startTime">Start Time</label>
+                        <select id="startTime" name="startTime">
+                            <option value="immediate">Start Immediately</option>
+                            <option value="scheduled">Schedule Start Time</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" id="scheduledTimeGroup" style="display: none;">
+                    <label>Scheduled Start Date & Time</label>
+                    <div class="datetime-input">
+                        <input type="date" id="startDate" name="startDate">
+                        <input type="time" id="startTimeInput" name="startTimeInput">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shipping & Payment -->
+            <div class="form-section">
+                <h3><i class="fas fa-shipping-fast"></i> Shipping & Payment</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="shippingCost">Shipping Cost *</label>
+                        <div class="price-input-group">
+                            <span class="currency-symbol">$</span>
+                            <input type="number" id="shippingCost" name="shippingCost" required min="0" step="0.01" placeholder="0.00">
+                        </div>
+                        <div class="help-text">Enter 0 for free shipping</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="handlingTime">Handling Time *</label>
+                        <select id="handlingTime" name="handlingTime" required>
+                            <option value="">Select handling time</option>
+                            <option value="1">1 business day</option>
+                            <option value="2">2 business days</option>
+                            <option value="3">3 business days</option>
+                            <option value="5">5 business days</option>
+                            <option value="7">1 week</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="paymentMethods">Accepted Payment Methods *</label>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; margin-top: 0.5rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                            <input type="checkbox" name="paymentMethods" value="paypal" checked>
+                            PayPal
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                            <input type="checkbox" name="paymentMethods" value="credit">
+                            Credit/Debit Card
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                            <input type="checkbox" name="paymentMethods" value="bank">
+                            Bank Transfer
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: normal;">
+                            <input type="checkbox" name="paymentMethods" value="cash">
+                            Cash on Pickup
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="returnPolicy">Return Policy</label>
+                    <select id="returnPolicy" name="returnPolicy">
+                        <option value="no-returns">No Returns</option>
+                        <option value="7-days">7 Days</option>
+                        <option value="14-days">14 Days</option>
+                        <option value="30-days">30 Days</option>
+                    </select>
+                    <div class="help-text">Offering returns can increase buyer confidence</div>
+                </div>
+            </div>
+
+            <!-- Fee Breakdown -->
+            <div class="form-section">
+                <h3><i class="fas fa-calculator"></i> Fee Breakdown</h3>
+                <div class="fee-breakdown" id="feeBreakdown">
+                    <h4>Estimated Fees</h4>
+                    <div class="fee-item">
+                        <span>Listing Fee:</span>
+                        <span>Free</span>
+                    </div>
+                    <div class="fee-item">
+                        <span>Final Value Fee (10%):</span>
+                        <span id="finalValueFee">$0.00</span>
+                    </div>
+                    <div class="fee-item">
+                        <span>Payment Processing (3%):</span>
+                        <span id="paymentFee">$0.00</span>
+                    </div>
+                    <div class="fee-item total">
+                        <span>Total Fees:</span>
+                        <span id="totalFees">$0.00</span>
+                    </div>
+                    <div class="fee-item total" style="color: #28a745;">
+                        <span>You'll Receive:</span>
+                        <span id="youReceive">$0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terms and Conditions -->
+            <div class="terms-checkbox">
+                <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                <label for="agreeTerms">
+                    I agree to the <a href="terms.html" target="_blank" style="color: #667eea;">Terms of Service</a> and <a href="seller-agreement.html" target="_blank" style="color: #667eea;">Seller Agreement</a>. I confirm that I have the right to sell this item and that all information provided is accurate.
+                </label>
+            </div>
+
+            <!-- Submit Buttons -->
+            <div class="submit-buttons">
+                <button type="button" class="btn-draft" onclick="saveDraft()">
+                    <i class="fas fa-save"></i> Save Draft
+                </button>
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-gavel"></i> List Item for Auction
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-gavel"></i> AuctionHub</h3>
+                    <p>Your trusted online auction platform for unique finds and great deals.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#categories">Categories</a></li>
+                        <li><a href="sell.html">Sell Items</a></li>
+                        <li><a href="index.html#auctions">Live Auctions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="seller-agreement.html">Seller Agreement</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="privacy.html#cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="help.html#guide-safety">Safety Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AuctionHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- API Configuration -->
+    <script src="js/api-config.js"></script>
+    <!-- Sell Page JavaScript -->
+    <script src="js/sell.js"></script>
+    <!-- Legacy Script (for compatibility) -->
+    <script src="sell.js"></script>
+</body>
+</html>

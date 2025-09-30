@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Agreement - AuctionHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Additional styles for legal pages */
+        .legal-container {
+            max-width: 900px;
+            margin: 120px auto 2rem;
+            padding: 0 20px;
+        }
+
+        .legal-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .legal-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .legal-header .effective-date {
+            color: #666;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .legal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            line-height: 1.8;
+        }
+
+        .legal-content h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem 0;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .legal-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .legal-content h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .legal-content p {
+            margin-bottom: 1.5rem;
+            color: #444;
+        }
+
+        .legal-content ul, .legal-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .legal-content li {
+            margin-bottom: 0.5rem;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-box h4 {
+            margin: 0 0 1rem 0;
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box h4 {
+            margin: 0 0 1rem 0;
+            color: #856404;
+            font-size: 1.2rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .contact-section a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #5a67d8;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .toc h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .toc a:hover {
+            background: #e8f0fe;
+        }
+
+        .fee-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .fee-table th,
+        .fee-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .fee-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .fee-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .fee-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        @media (max-width: 768px) {
+            .legal-container {
+                margin-top: 100px;
+            }
+
+            .legal-header h1 {
+                font-size: 2rem;
+            }
+
+            .legal-content {
+                padding: 2rem;
+            }
+
+            .legal-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .fee-table {
+                font-size: 0.9rem;
+            }
+
+            .fee-table th,
+            .fee-table td {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><i class="fas fa-gavel"></i> AuctionHub</h1>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#auctions">Live Auctions</a></li>
+                    <li><a href="index.html#categories">Categories</a></li>
+                    <li><a href="sell.html">Sell Item</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="login.html" class="btn-secondary">Login</a>
+                <a href="signup.html" class="btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seller Agreement Content -->
+    <div class="legal-container">
+        <a href="sell.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Sell Page
+        </a>
+
+        <div class="legal-header">
+            <h1>Seller Agreement</h1>
+            <p class="effective-date">Effective Date: September 30, 2025</p>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#overview">1. Agreement Overview</a></li>
+                <li><a href="#seller-obligations">2. Seller Obligations</a></li>
+                <li><a href="#listing-requirements">3. Listing Requirements</a></li>
+                <li><a href="#prohibited-items">4. Prohibited Items</a></li>
+                <li><a href="#auction-management">5. Auction Management</a></li>
+                <li><a href="#fees-payment">6. Fees and Payment</a></li>
+                <li><a href="#shipping-handling">7. Shipping and Handling</a></li>
+                <li><a href="#returns-refunds">8. Returns and Refunds</a></li>
+                <li><a href="#seller-protection">9. Seller Protection</a></li>
+                <li><a href="#account-management">10. Account Management</a></li>
+                <li><a href="#compliance">11. Legal Compliance</a></li>
+                <li><a href="#violations">12. Violations and Enforcement</a></li>
+                <li><a href="#seller-support">13. Seller Support</a></li>
+                <li><a href="#agreement-changes">14. Agreement Changes</a></li>
+                <li><a href="#contact-seller">15. Contact Information</a></li>
+            </ul>
+        </div>
+
+        <div class="legal-content">
+            <h2 id="overview">1. Agreement Overview</h2>
+            <p>This Seller Agreement ("Agreement") supplements our Terms of Service and governs your activities as a seller on the AuctionHub platform. By listing items for sale, you agree to comply with all provisions outlined in this Agreement.</p>
+            
+            <div class="highlight-box">
+                <h4>Seller Commitment</h4>
+                <p>As a seller on AuctionHub, you commit to providing excellent customer service, accurate item descriptions, and timely fulfillment of all completed sales.</p>
+            </div>
+
+            <h2 id="seller-obligations">2. Seller Obligations</h2>
+            <h3>2.1 General Responsibilities</h3>
+            <p>As a seller, you must:</p>
+            <ul>
+                <li>Provide accurate, complete, and honest descriptions of all items</li>
+                <li>Upload clear, high-quality photographs showing the item's actual condition</li>
+                <li>Honor all completed sales and binding commitments</li>
+                <li>Ship items promptly within stated handling times</li>
+                <li>Respond to buyer inquiries within 24 hours</li>
+                <li>Maintain professional communication with buyers</li>
+                <li>Comply with all applicable laws and regulations</li>
+                <li>Keep your account information current and accurate</li>
+            </ul>
+
+            <h3>2.2 Item Ownership and Rights</h3>
+            <p>You warrant that you:</p>
+            <ul>
+                <li>Own or have the legal right to sell all listed items</li>
+                <li>Have not encumbered the items with liens or other restrictions</li>
+                <li>Will transfer clear title to buyers upon payment</li>
+                <li>Have not listed stolen, counterfeit, or illegally obtained items</li>
+            </ul>
+
+            <h2 id="listing-requirements">3. Listing Requirements</h2>
+            <h3>3.1 Item Descriptions</h3>
+            <p>All item descriptions must include:</p>
+            <ul>
+                <li>Accurate title that describes the item</li>
+                <li>Detailed description including dimensions, materials, and condition</li>
+                <li>Clear disclosure of any flaws, damage, or repairs</li>
+                <li>Honest assessment of item condition</li>
+                <li>Relevant technical specifications where applicable</li>
+                <li>Provenance or history when relevant to value</li>
+            </ul>
+
+            <h3>3.2 Photography Requirements</h3>
+            <p>Item photographs must:</p>
+            <ul>
+                <li>Show the actual item being sold</li>
+                <li>Be clear, well-lit, and in focus</li>
+                <li>Include multiple angles and detail shots</li>
+                <li>Accurately represent the item's condition and color</li>
+                <li>Highlight any flaws or damage</li>
+                <li>Not use stock photos or images from other sources</li>
+            </ul>
+
+            <h3>3.3 Pricing and Reserve</h3>
+            <p>When setting prices:</p>
+            <ul>
+                <li>Starting bids should be reasonable and competitive</li>
+                <li>Reserve prices must be disclosed to potential bidders</li>
+                <li>Buy It Now prices should reflect fair market value</li>
+                <li>All prices must be in the currency specified on our platform</li>
+            </ul>
+
+            <h2 id="prohibited-items">4. Prohibited Items</h2>
+            <div class="warning-box">
+                <h4>Strict Prohibition</h4>
+                <p>Listing prohibited items may result in immediate account suspension and legal action. When in doubt, contact our support team before listing.</p>
+            </div>
+
+            <p>The following items are strictly prohibited:</p>
+            <ul>
+                <li><strong>Illegal Items:</strong> Drugs, weapons, stolen goods, counterfeit products</li>
+                <li><strong>Regulated Items:</strong> Prescription medications, medical devices, pesticides</li>
+                <li><strong>Dangerous Items:</strong> Explosives, hazardous chemicals, radioactive materials</li>
+                <li><strong>Restricted Items:</strong> Tobacco, alcohol (in many jurisdictions), fireworks</li>
+                <li><strong>Intellectual Property:</strong> Bootleg recordings, unauthorized reproductions</li>
+                <li><strong>Adult Content:</strong> Sexually explicit materials, adult services</li>
+                <li><strong>Live Animals:</strong> Pets, livestock, endangered species</li>
+                <li><strong>Human Parts:</strong> Organs, blood, hair, body parts</li>
+                <li><strong>Services:</strong> Labor, consulting, or intangible services</li>
+            </ul>
+
+            <h2 id="auction-management">5. Auction Management</h2>
+            <h3>5.1 Auction Settings</h3>
+            <p>Sellers are responsible for:</p>
+            <ul>
+                <li>Setting appropriate auction duration (1-10 days)</li>
+                <li>Choosing suitable starting bid amounts</li>
+                <li>Determining shipping costs and handling times</li>
+                <li>Specifying accepted payment methods</li>
+                <li>Setting clear return policies</li>
+            </ul>
+
+            <h3>5.2 During the Auction</h3>
+            <p>While your auction is active:</p>
+            <ul>
+                <li>Monitor for buyer questions and respond promptly</li>
+                <li>Do not contact bidders to influence their bidding</li>
+                <li>Cannot modify core auction details once bids are placed</li>
+                <li>May add additional information to clarify descriptions</li>
+                <li>Must honor all legitimate bids received</li>
+            </ul>
+
+            <h3>5.3 Auction Cancellation</h3>
+            <p>Auctions may only be cancelled in exceptional circumstances:</p>
+            <ul>
+                <li>Item is no longer available due to damage or loss</li>
+                <li>Significant error in listing discovered</li>
+                <li>Legal issues prevent the sale</li>
+            </ul>
+            <p>Frivolous cancellations may result in seller fees and account restrictions.</p>
+
+            <h2 id="fees-payment">6. Fees and Payment</h2>
+            <h3>6.1 Fee Structure</h3>
+            <table class="fee-table">
+                <thead>
+                    <tr>
+                        <th>Fee Type</th>
+                        <th>Amount</th>
+                        <th>When Charged</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Listing Fee</td>
+                        <td>Free for most categories</td>
+                        <td>When listing is created</td>
+                    </tr>
+                    <tr>
+                        <td>Final Value Fee</td>
+                        <td>10% of sale price</td>
+                        <td>When item sells</td>
+                    </tr>
+                    <tr>
+                        <td>Payment Processing</td>
+                        <td>3% of transaction</td>
+                        <td>When payment is processed</td>
+                    </tr>
+                    <tr>
+                        <td>Featured Listing</td>
+                        <td>$5.00 - $25.00</td>
+                        <td>Optional upgrade fee</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>6.2 Payment Processing</h3>
+            <p>We process payments as follows:</p>
+            <ul>
+                <li>Buyers pay AuctionHub directly for all purchases</li>
+                <li>We hold funds until shipping confirmation or delivery</li>
+                <li>Seller proceeds are released within 2-5 business days</li>
+                <li>Fees are automatically deducted from proceeds</li>
+                <li>Payments are made via your chosen payout method</li>
+            </ul>
+
+            <h2 id="shipping-handling">7. Shipping and Handling</h2>
+            <h3>7.1 Shipping Requirements</h3>
+            <p>Sellers must:</p>
+            <ul>
+                <li>Ship items within the stated handling time</li>
+                <li>Package items securely to prevent damage</li>
+                <li>Provide tracking information when available</li>
+                <li>Insure high-value items during shipping</li>
+                <li>Upload shipping confirmation to our platform</li>
+            </ul>
+
+            <h3>7.2 Shipping Costs</h3>
+            <p>Shipping charges should:</p>
+            <ul>
+                <li>Reflect actual shipping costs</li>
+                <li>Include reasonable packaging expenses</li>
+                <li>Not be used to circumvent final value fees</li>
+                <li>Be clearly stated in the listing</li>
+            </ul>
+
+            <h3>7.3 International Shipping</h3>
+            <p>For international sales, sellers are responsible for:</p>
+            <ul>
+                <li>Understanding export/import restrictions</li>
+                <li>Completing customs documentation accurately</li>
+                <li>Declaring proper values for customs</li>
+                <li>Communicating potential customs fees to buyers</li>
+            </ul>
+
+            <h2 id="returns-refunds">8. Returns and Refunds</h2>
+            <h3>8.1 Return Policy</h3>
+            <p>Sellers may choose to offer returns with these guidelines:</p>
+            <ul>
+                <li>Return policy must be clearly stated in listings</li>
+                <li>Return periods typically range from 7-30 days</li>
+                <li>Items must be returned in original condition</li>
+                <li>Return shipping costs are typically buyer's responsibility</li>
+                <li>Refunds should be processed within 3 business days of receipt</li>
+            </ul>
+
+            <h3>8.2 Mandatory Returns</h3>
+            <p>Returns are required when:</p>
+            <ul>
+                <li>Item is significantly not as described</li>
+                <li>Item is damaged during shipping (if insured)</li>
+                <li>Wrong item was sent to buyer</li>
+                <li>Item is discovered to be counterfeit or stolen</li>
+            </ul>
+
+            <h2 id="seller-protection">9. Seller Protection</h2>
+            <h3>9.1 Fraud Protection</h3>
+            <p>We protect sellers from:</p>
+            <ul>
+                <li>Fraudulent payment reversals when shipping is confirmed</li>
+                <li>Buyer claims when items are as described</li>
+                <li>Unreasonable return requests outside stated policies</li>
+                <li>Harassment or abusive buyer behavior</li>
+            </ul>
+
+            <h3>9.2 Dispute Resolution</h3>
+            <p>Our dispute resolution process:</p>
+            <ul>
+                <li>Encourages direct communication between parties</li>
+                <li>Provides mediation services for unresolved issues</li>
+                <li>Reviews evidence from both parties fairly</li>
+                <li>Makes binding decisions when necessary</li>
+                <li>May provide compensation in cases of platform error</li>
+            </ul>
+
+            <h2 id="account-management">10. Account Management</h2>
+            <h3>10.1 Account Standing</h3>
+            <p>We monitor seller performance through:</p>
+            <ul>
+                <li>Buyer feedback and ratings</li>
+                <li>Transaction completion rates</li>
+                <li>Response time to buyer inquiries</li>
+                <li>Shipping and handling timeliness</li>
+                <li>Policy compliance history</li>
+            </ul>
+
+            <h3>10.2 Performance Standards</h3>
+            <p>To maintain good standing, sellers should:</p>
+            <ul>
+                <li>Maintain 95%+ positive feedback rating</li>
+                <li>Complete 98%+ of all sales</li>
+                <li>Respond to inquiries within 24 hours</li>
+                <li>Ship within stated handling times</li>
+                <li>Resolve disputes professionally</li>
+            </ul>
+
+            <h2 id="compliance">11. Legal Compliance</h2>
+            <h3>11.1 Tax Obligations</h3>
+            <p>Sellers are responsible for:</p>
+            <ul>
+                <li>Reporting income from sales as required by law</li>
+                <li>Collecting and remitting applicable sales taxes</li>
+                <li>Maintaining records of all transactions</li>
+                <li>Complying with local business licensing requirements</li>
+            </ul>
+
+            <h3>11.2 Regulatory Compliance</h3>
+            <p>Sellers must comply with:</p>
+            <ul>
+                <li>Consumer protection laws</li>
+                <li>Truth in advertising regulations</li>
+                <li>Product safety standards</li>
+                <li>Import/export restrictions</li>
+                <li>Intellectual property laws</li>
+            </ul>
+
+            <h2 id="violations">12. Violations and Enforcement</h2>
+            <h3>12.1 Warning System</h3>
+            <p>Policy violations may result in:</p>
+            <ul>
+                <li>Email warnings for minor infractions</li>
+                <li>Listing removal for policy violations</li>
+                <li>Temporary selling restrictions</li>
+                <li>Account suspension for serious violations</li>
+                <li>Permanent account termination for severe or repeated violations</li>
+            </ul>
+
+            <h3>12.2 Appeal Process</h3>
+            <p>Sellers may appeal enforcement actions by:</p>
+            <ul>
+                <li>Contacting our seller support team</li>
+                <li>Providing documentation supporting their position</li>
+                <li>Requesting review by senior support staff</li>
+                <li>Implementing corrective measures as requested</li>
+            </ul>
+
+            <h2 id="seller-support">13. Seller Support</h2>
+            <p>We provide comprehensive support including:</p>
+            <ul>
+                <li>24/7 seller support helpline</li>
+                <li>Online knowledge base and tutorials</li>
+                <li>Best practices guides and selling tips</li>
+                <li>Regular seller newsletters and updates</li>
+                <li>Community forums for seller interaction</li>
+                <li>Account management tools and analytics</li>
+            </ul>
+
+            <h2 id="agreement-changes">14. Agreement Changes</h2>
+            <p>We may modify this Agreement with 30 days' notice to sellers. Significant changes will be communicated via:</p>
+            <ul>
+                <li>Email notifications to registered sellers</li>
+                <li>Platform announcements and banners</li>
+                <li>Updates to our seller resource center</li>
+                <li>In-app notifications for active users</li>
+            </ul>
+
+            <h2 id="contact-seller">15. Contact Information</h2>
+            <p>For seller-specific questions and support:</p>
+            <ul>
+                <li><strong>Seller Support:</strong> sellers@auctionhub.com</li>
+                <li><strong>Phone Support:</strong> 1-800-SELLERS (24/7)</li>
+                <li><strong>Live Chat:</strong> Available in your seller dashboard</li>
+                <li><strong>Mail:</strong> AuctionHub Seller Support, 123 Auction Street, Commerce City, ST 12345</li>
+            </ul>
+        </div>
+
+        <div class="contact-section">
+            <h3>Ready to Start Selling?</h3>
+            <p>Our seller success team is here to help you maximize your sales. Contact us at <a href="mailto:sellers@auctionhub.com">sellers@auctionhub.com</a> or visit our <a href="sell.html">Sell Your Item</a> page to get started.</p>
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="sell.html" class="btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-plus"></i> Start Selling Now
+                </a>
+                <a href="index.html" class="btn-secondary" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; background: white; color: #667eea; border: 2px solid white;">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-gavel"></i> AuctionHub</h3>
+                    <p>Your trusted online auction platform for unique finds and great deals.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#categories">Categories</a></li>
+                        <li><a href="sell.html">Sell Items</a></li>
+                        <li><a href="#help">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="seller-agreement.html">Seller Agreement</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="privacy.html#cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="help.html#guide-safety">Safety Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AuctionHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for table of contents links
+        document.querySelectorAll('.toc a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight current section in table of contents
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('h2[id]');
+            const tocLinks = document.querySelectorAll('.toc a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            tocLinks.forEach(link => {
+                link.style.background = '';
+                link.style.fontWeight = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.background = '#e8f0fe';
+                    link.style.fontWeight = 'bold';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

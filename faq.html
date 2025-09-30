@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Frequently Asked Questions - AuctionHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* FAQ specific styles */
+        .faq-container {
+            max-width: 1000px;
+            margin: 120px auto 2rem;
+            padding: 0 20px;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .faq-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .faq-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .faq-search {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .faq-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-filter {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-filter:hover,
+        .category-filter.active {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .category-filter i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .faq-content {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+
+        .faq-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f1f3f4;
+        }
+
+        .category-title i {
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+
+        .category-title h2 {
+            color: #333;
+            margin: 0;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #e9ecef;
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .faq-question i {
+            color: #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            margin: 0 0 1rem 0;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .faq-answer ul {
+            margin: 0 0 1rem 0;
+            padding-left: 2rem;
+            color: #555;
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .faq-answer a:hover {
+            text-decoration: underline;
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .stat-card p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .contact-help {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .contact-help h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .contact-help p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .help-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .faq-container {
+                margin-top: 100px;
+            }
+
+            .faq-header h1 {
+                font-size: 2rem;
+            }
+
+            .faq-categories {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .category-filter {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .help-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .help-buttons .btn-primary,
+            .help-buttons .btn-secondary {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><i class="fas fa-gavel"></i> AuctionHub</h1>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#auctions">Live Auctions</a></li>
+                    <li><a href="index.html#categories">Categories</a></li>
+                    <li><a href="sell.html">Sell Item</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="login.html" class="btn-secondary">Login</a>
+                <a href="signup.html" class="btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- FAQ Content -->
+    <div class="faq-container">
+        <!-- Header -->
+        <div class="faq-header">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find quick answers to common questions about buying, selling, and using AuctionHub</p>
+        </div>
+
+        <!-- Search -->
+        <div class="faq-search">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="faqSearch" placeholder="Search FAQ...">
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <h3>50K+</h3>
+                <p>Active Users</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-gavel"></i>
+                <h3>10K+</h3>
+                <p>Live Auctions</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-star"></i>
+                <h3>4.8/5</h3>
+                <p>Average Rating</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <h3>24/7</h3>
+                <p>Support Available</p>
+            </div>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="faq-categories">
+            <div class="category-filter active" data-category="all">
+                <i class="fas fa-list"></i>
+                All Topics
+            </div>
+            <div class="category-filter" data-category="bidding">
+                <i class="fas fa-hand-paper"></i>
+                Bidding
+            </div>
+            <div class="category-filter" data-category="selling">
+                <i class="fas fa-store"></i>
+                Selling
+            </div>
+            <div class="category-filter" data-category="payments">
+                <i class="fas fa-credit-card"></i>
+                Payments
+            </div>
+            <div class="category-filter" data-category="shipping">
+                <i class="fas fa-shipping-fast"></i>
+                Shipping
+            </div>
+            <div class="category-filter" data-category="account">
+                <i class="fas fa-user"></i>
+                Account
+            </div>
+        </div>
+
+        <!-- FAQ Content -->
+        <div class="faq-content">
+            <!-- Bidding Category -->
+            <div class="faq-category" data-category="bidding">
+                <div class="category-title">
+                    <i class="fas fa-hand-paper"></i>
+                    <h2>Bidding & Auctions</h2>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I place a bid on an auction?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To place a bid:</p>
+                        <ul>
+                            <li>Click on the auction item you're interested in</li>
+                            <li>Click the "Bid Now" button</li>
+                            <li>Enter your maximum bid amount</li>
+                            <li>Confirm your bid</li>
+                        </ul>
+                        <p>Our system will automatically bid for you up to your maximum amount. You'll receive notifications if you're outbid.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is proxy bidding?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Proxy bidding is our automatic bidding system. When you enter a maximum bid, our system will bid incrementally on your behalf up to that amount, ensuring you always have the lowest winning bid possible.</p>
+                        <p>For example, if the current bid is $50 and you set a maximum of $100, the system might bid $55 for you. If someone else bids $60, the system will automatically bid $65 on your behalf, and so on, until your maximum is reached.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I retract a bid once it's placed?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Bids are generally binding and cannot be retracted. However, you may retract a bid in exceptional circumstances:</p>
+                        <ul>
+                            <li>You made a significant error in your bid amount</li>
+                            <li>The item description has been significantly changed</li>
+                            <li>You cannot reach the seller</li>
+                        </ul>
+                        <p>To request a bid retraction, <a href="contact.html">contact our support team</a> immediately with the auction ID and reason for retraction.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I know if I've won an auction?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You'll be notified immediately when you win an auction through:</p>
+                        <ul>
+                            <li>Email notification</li>
+                            <li>On-site notification</li>
+                            <li>Your account dashboard</li>
+                        </ul>
+                        <p>You'll then need to complete payment within 48 hours to secure your purchase.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selling Category -->
+            <div class="faq-category" data-category="selling">
+                <div class="category-title">
+                    <i class="fas fa-store"></i>
+                    <h2>Selling Items</h2>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I list an item for auction?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To list an item:</p>
+                        <ul>
+                            <li>Go to our <a href="sell.html">Sell Your Item</a> page</li>
+                            <li>Fill out the item details and upload photos</li>
+                            <li>Set your starting price and auction duration</li>
+                            <li>Review and publish your listing</li>
+                        </ul>
+                        <p>Our team will review your listing within 24 hours before it goes live.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What fees do I pay as a seller?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our seller fees are transparent and competitive:</p>
+                        <ul>
+                            <li>Listing fee: FREE for your first 50 listings per month</li>
+                            <li>Final value fee: 8% of the final sale price</li>
+                            <li>Payment processing: 2.9% + $0.30 per transaction</li>
+                            <li>Optional features: Featured listings, reserve prices (additional fees apply)</li>
+                        </ul>
+                        <p>View detailed fee structure in our <a href="seller-agreement.html">Seller Agreement</a>.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I set a reserve price?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! A reserve price is the minimum amount you're willing to accept for your item. Key points:</p>
+                        <ul>
+                            <li>Reserve prices are hidden from bidders</li>
+                            <li>The item won't sell unless the reserve is met</li>
+                            <li>Reserve fee: $5 for items under $500, $10 for items over $500</li>
+                            <li>Fee is refunded if your item sells</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I get paid when my item sells?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Payment is processed automatically:</p>
+                        <ul>
+                            <li>Buyer payment is held in escrow until item is delivered</li>
+                            <li>Funds are released to you after successful delivery confirmation</li>
+                            <li>Payment methods: PayPal, bank transfer, or check</li>
+                            <li>Processing time: 1-3 business days after release</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payments Category -->
+            <div class="faq-category" data-category="payments">
+                <div class="category-title">
+                    <i class="fas fa-credit-card"></i>
+                    <h2>Payments & Billing</h2>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What payment methods are accepted?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept various secure payment methods:</p>
+                        <ul>
+                            <li>Credit cards (Visa, MasterCard, American Express, Discover)</li>
+                            <li>PayPal</li>
+                            <li>Bank transfers (ACH)</li>
+                            <li>Apple Pay and Google Pay</li>
+                            <li>Cash on pickup (local transactions only)</li>
+                        </ul>
+                        <p>All payments are processed securely through encrypted connections.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is my payment information secure?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We use industry-standard security measures:</p>
+                        <ul>
+                            <li>SSL encryption for all transactions</li>
+                            <li>PCI DSS compliant payment processing</li>
+                            <li>No credit card numbers stored on our servers</li>
+                            <li>Two-factor authentication available</li>
+                            <li>Regular security audits and monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What if there's a payment dispute?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our dispute resolution process protects both buyers and sellers:</p>
+                        <ul>
+                            <li>Contact the other party first to resolve the issue</li>
+                            <li>If unresolved, open a dispute in your account dashboard</li>
+                            <li>Our mediation team will investigate within 48 hours</li>
+                            <li>We may hold funds in escrow until resolution</li>
+                            <li>Final decisions are based on evidence and platform policies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shipping Category -->
+            <div class="faq-category" data-category="shipping">
+                <div class="category-title">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h2>Shipping & Delivery</h2>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How much does shipping cost?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Shipping costs vary by item and location:</p>
+                        <ul>
+                            <li>Costs are calculated by the seller based on item size, weight, and destination</li>
+                            <li>Shipping calculator available during checkout</li>
+                            <li>Some sellers offer free shipping (included in item price)</li>
+                            <li>Local pickup option may be available to avoid shipping costs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How can I track my shipment?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tracking your order is easy:</p>
+                        <ul>
+                            <li>Login to your account and go to "My Purchases"</li>
+                            <li>Click on the order you want to track</li>
+                            <li>Tracking number and carrier information will be provided</li>
+                            <li>You'll receive email updates on shipping status</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What if my item arrives damaged?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If your item arrives damaged:</p>
+                        <ul>
+                            <li>Take photos of the damage and packaging immediately</li>
+                            <li>Contact the seller within 48 hours</li>
+                            <li>File a dispute if the seller doesn't respond</li>
+                            <li>We may require you to get a shipping damage report</li>
+                            <li>Refunds or replacements will be handled case-by-case</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Category -->
+            <div class="faq-category" data-category="account">
+                <div class="category-title">
+                    <i class="fas fa-user"></i>
+                    <h2>Account & Profile</h2>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I create an account?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Creating an account is quick and free:</p>
+                        <ul>
+                            <li>Click "Sign Up" in the top right corner</li>
+                            <li>Provide your email address and create a password</li>
+                            <li>Verify your email address</li>
+                            <li>Complete your profile information</li>
+                            <li>Add payment methods for bidding/selling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I verify my account?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Account verification increases trust and may be required for certain activities:</p>
+                        <ul>
+                            <li>Email verification: Click the link sent to your email</li>
+                            <li>Phone verification: Enter the code sent via SMS</li>
+                            <li>Identity verification: Upload government ID (for selling)</li>
+                            <li>Address verification: Provide proof of address</li>
+                        </ul>
+                        <p>Verified accounts can participate in higher-value auctions and have better visibility.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I change my username?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Username changes are limited to maintain trust and consistency:</p>
+                        <ul>
+                            <li>New accounts: Can change username within first 30 days</li>
+                            <li>Established accounts: One username change per year</li>
+                            <li>Contact support to request a username change</li>
+                            <li>Some restrictions apply (profanity, impersonation, etc.)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I delete my account?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can delete your account at any time:</p>
+                        <ul>
+                            <li>Go to Account Settings > Privacy & Security</li>
+                            <li>Click "Delete Account"</li>
+                            <li>Complete any pending transactions first</li>
+                            <li>Confirm deletion via email</li>
+                            <li>Account data is permanently removed within 30 days</li>
+                        </ul>
+                        <p>Note: This action cannot be undone. Consider deactivating instead if you might return.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Help Section -->
+        <div class="contact-help">
+            <h3>Still Need Help?</h3>
+            <p>Can't find the answer you're looking for? Our friendly support team is here to help!</p>
+            <div class="help-buttons">
+                <a href="contact.html" class="btn-primary">Contact Support</a>
+                <a href="help.html" class="btn-secondary">Visit Help Center</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-gavel"></i> AuctionHub</h3>
+                    <p>Your trusted online auction platform for unique finds and great deals.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#categories">Categories</a></li>
+                        <li><a href="sell.html">Sell Items</a></li>
+                        <li><a href="help.html">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="seller-agreement.html">Seller Agreement</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="privacy.html#cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="help.html#guide-safety">Safety Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AuctionHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        const categoryFilters = document.querySelectorAll('.category-filter');
+        const faqCategories = document.querySelectorAll('.faq-category');
+        const searchInput = document.getElementById('faqSearch');
+
+        // Toggle FAQ answers
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+
+                // Close all other answers
+                faqQuestions.forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+
+                // Toggle current answer
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Category filtering
+        categoryFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                const category = filter.getAttribute('data-category');
+
+                // Update active filter
+                categoryFilters.forEach(f => f.classList.remove('active'));
+                filter.classList.add('active');
+
+                // Show/hide categories
+                faqCategories.forEach(cat => {
+                    if (category === 'all' || cat.getAttribute('data-category') === category) {
+                        cat.classList.remove('hidden');
+                    } else {
+                        cat.classList.add('hidden');
+                    }
+                });
+
+                // Clear search
+                searchInput.value = '';
+                clearSearch();
+            });
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            if (searchTerm === '') {
+                clearSearch();
+                return;
+            }
+
+            // Show all categories when searching
+            faqCategories.forEach(cat => cat.classList.remove('hidden'));
+            
+            // Hide items that don't match search
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Update category filter to show "All"
+            categoryFilters.forEach(f => f.classList.remove('active'));
+            document.querySelector('[data-category="all"]').classList.add('active');
+        });
+
+        function clearSearch() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.style.display = 'block';
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

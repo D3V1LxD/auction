@@ -1,0 +1,26 @@
+# Core Flask Framework
+Flask==3.0.0
+Werkzeug==3.0.1
+
+# Database & ORM
+Flask-SQLAlchemy==3.1.1
+SQLAlchemy==2.0.23
+
+# Authentication & Security
+Flask-Login==0.6.3
+Flask-Bcrypt==1.0.1
+
+# CORS Support for Frontend Integration
+Flask-CORS==4.0.0
+
+# Environment Configuration
+python-dotenv==1.0.0
+
+# Image Processing & File Handling
+Pillow==10.1.0
+
+# HTTP Requests (for testing)
+requests==2.31.0
+
+# Date & Time Utilities
+python-dateutil==2.8.2

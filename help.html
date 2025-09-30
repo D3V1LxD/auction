@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - AuctionHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Help Center specific styles */
+        .help-container {
+            max-width: 1200px;
+            margin: 120px auto 2rem;
+            padding: 0 20px;
+        }
+
+        .help-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+        }
+
+        .help-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .help-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .help-search {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1.5rem 1.5rem 1.5rem 4rem;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1.5rem;
+        }
+
+        .help-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .help-category {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .help-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .help-category h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .help-category p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .help-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .help-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .help-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .help-links a:hover {
+            color: #5a6fd8;
+            text-decoration: underline;
+        }
+
+        .quick-actions {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .quick-actions h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .action-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .action-card:hover {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .action-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+            color: #667eea;
+        }
+
+        .action-card:hover i {
+            color: white;
+        }
+
+        .action-card h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .action-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .support-options {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .support-options h2 {
+            margin-bottom: 2rem;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .support-option {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .support-option:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .support-option i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .support-option h4 {
+            margin-bottom: 1rem;
+        }
+
+        .support-option p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .support-option .btn-white {
+            background: white;
+            color: #667eea;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .support-option .btn-white:hover {
+            background: #f8f9fa;
+            transform: scale(1.05);
+        }
+
+        .help-resources {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+
+        .help-resources h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .resource-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .resource-tab {
+            background: #f8f9fa;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .resource-tab.active,
+        .resource-tab:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .resource-content {
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .resource-content.active {
+            display: block;
+        }
+
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .resource-item h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-item p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .resource-item a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .resource-item a:hover {
+            text-decoration: underline;
+        }
+
+        .status-page {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid #28a745;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #28a745;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin-bottom: 1rem;
+        }
+
+        .status-indicator i {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .help-container {
+                margin-top: 100px;
+            }
+
+            .help-header {
+                padding: 2rem 1rem;
+            }
+
+            .help-header h1 {
+                font-size: 2rem;
+            }
+
+            .help-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .action-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resource-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .resource-tab {
+                width: 100%;
+                max-width: 200px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><i class="fas fa-gavel"></i> AuctionHub</h1>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#auctions">Live Auctions</a></li>
+                    <li><a href="index.html#categories">Categories</a></li>
+                    <li><a href="sell.html">Sell Item</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="login.html" class="btn-secondary">Login</a>
+                <a href="signup.html" class="btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Help Center Content -->
+    <div class="help-container">
+        <!-- Header -->
+        <div class="help-header">
+            <h1><i class="fas fa-life-ring"></i> Help Center</h1>
+            <p>Find answers, get support, and learn how to make the most of your AuctionHub experience</p>
+        </div>
+
+        <!-- Search -->
+        <div class="help-search">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="helpSearch" placeholder="Search for help articles, guides, and tutorials...">
+            </div>
+        </div>
+
+        <!-- Help Categories -->
+        <div class="help-categories">
+            <div class="help-category">
+                <div class="category-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h3>Getting Started</h3>
+                <p>New to AuctionHub? Learn the basics of buying and selling on our platform.</p>
+                <ul class="help-links">
+                    <li><a href="#guide-account">Creating Your Account</a></li>
+                    <li><a href="#guide-verify">Account Verification</a></li>
+                    <li><a href="#guide-first-bid">Your First Bid</a></li>
+                    <li><a href="#guide-first-listing">Your First Listing</a></li>
+                    <li><a href="#guide-navigation">Navigating the Platform</a></li>
+                </ul>
+            </div>
+
+            <div class="help-category">
+                <div class="category-icon">
+                    <i class="fas fa-hand-paper"></i>
+                </div>
+                <h3>Bidding & Buying</h3>
+                <p>Master the art of bidding and secure great deals on unique items.</p>
+                <ul class="help-links">
+                    <li><a href="faq.html#bidding">How to Place Bids</a></li>
+                    <li><a href="#guide-proxy">Understanding Proxy Bidding</a></li>
+                    <li><a href="#guide-winning">What Happens When You Win</a></li>
+                    <li><a href="#guide-payment">Payment Process</a></li>
+                    <li><a href="#guide-disputes">Handling Disputes</a></li>
+                </ul>
+            </div>
+
+            <div class="help-category">
+                <div class="category-icon">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h3>Selling Items</h3>
+                <p>Turn your items into cash with our comprehensive selling tools and guides.</p>
+                <ul class="help-links">
+                    <li><a href="sell.html">List Your First Item</a></li>
+                    <li><a href="#guide-photos">Taking Great Photos</a></li>
+                    <li><a href="#guide-pricing">Pricing Strategies</a></li>
+                    <li><a href="seller-agreement.html">Understanding Fees</a></li>
+                    <li><a href="#guide-shipping">Shipping Best Practices</a></li>
+                </ul>
+            </div>
+
+            <div class="help-category">
+                <div class="category-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Safety & Security</h3>
+                <p>Stay safe and protect yourself from fraud with our security guidelines.</p>
+                <ul class="help-links">
+                    <li><a href="#guide-safety">Safe Trading Tips</a></li>
+                    <li><a href="#guide-scams">Avoiding Scams</a></li>
+                    <li><a href="#guide-reports">Reporting Issues</a></li>
+                    <li><a href="privacy.html">Privacy Protection</a></li>
+                    <li><a href="#guide-secure">Secure Payments</a></li>
+                </ul>
+            </div>
+
+            <div class="help-category">
+                <div class="category-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>Account & Settings</h3>
+                <p>Manage your account, preferences, and personal information effectively.</p>
+                <ul class="help-links">
+                    <li><a href="#guide-profile">Updating Your Profile</a></li>
+                    <li><a href="#guide-notifications">Notification Settings</a></li>
+                    <li><a href="#guide-password">Changing Password</a></li>
+                    <li><a href="#guide-delete">Deleting Your Account</a></li>
+                    <li><a href="#guide-privacy">Privacy Settings</a></li>
+                </ul>
+            </div>
+
+            <div class="help-category">
+                <div class="category-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Mobile & Apps</h3>
+                <p>Access AuctionHub on the go with our mobile-optimized platform.</p>
+                <ul class="help-links">
+                    <li><a href="#guide-mobile">Mobile Website Guide</a></li>
+                    <li><a href="#guide-notifications-mobile">Mobile Notifications</a></li>
+                    <li><a href="#guide-bidding-mobile">Bidding on Mobile</a></li>
+                    <li><a href="#guide-camera">Using Camera Features</a></li>
+                    <li><a href="#guide-offline">Offline Features</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h2>Quick Actions</h2>
+            <div class="action-grid">
+                <div class="action-card" onclick="window.location.href='contact.html'">
+                    <i class="fas fa-headset"></i>
+                    <h4>Contact Support</h4>
+                    <p>Get help from our support team</p>
+                </div>
+                <div class="action-card" onclick="window.location.href='faq.html'">
+                    <i class="fas fa-question-circle"></i>
+                    <h4>Browse FAQ</h4>
+                    <p>Find quick answers to common questions</p>
+                </div>
+                <div class="action-card" onclick="reportIssue()">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h4>Report an Issue</h4>
+                    <p>Report technical problems or violations</p>
+                </div>
+                <div class="action-card" onclick="trackOrder()">
+                    <i class="fas fa-package"></i>
+                    <h4>Track Your Order</h4>
+                    <p>Check the status of your purchases</p>
+                </div>
+                <div class="action-card" onclick="window.location.href='#guide-verify'">
+                    <i class="fas fa-check-circle"></i>
+                    <h4>Verify Account</h4>
+                    <p>Increase trust and unlock features</p>
+                </div>
+                <div class="action-card" onclick="downloadData()">
+                    <i class="fas fa-download"></i>
+                    <h4>Download Data</h4>
+                    <p>Export your account information</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Options -->
+        <div class="support-options">
+            <h2>Need Personal Assistance?</h2>
+            <p>Our support team is ready to help you with any questions or issues</p>
+            
+            <div class="support-grid">
+                <div class="support-option">
+                    <i class="fas fa-comments"></i>
+                    <h4>Live Chat</h4>
+                    <p>Instant help available 24/7 for registered users</p>
+                    <a href="#" class="btn-white" onclick="openLiveChat()">Start Chat</a>
+                </div>
+                <div class="support-option">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email Support</h4>
+                    <p>Get detailed help via email within 24 hours</p>
+                    <a href="contact.html" class="btn-white">Send Email</a>
+                </div>
+                <div class="support-option">
+                    <i class="fas fa-phone"></i>
+                    <h4>Phone Support</h4>
+                    <p>Speak directly with our support team</p>
+                    <a href="tel:1-800-AUCTION" class="btn-white">Call Now</a>
+                </div>
+                <div class="support-option">
+                    <i class="fas fa-video"></i>
+                    <h4>Video Call</h4>
+                    <p>Screen sharing for complex technical issues</p>
+                    <a href="#" class="btn-white" onclick="scheduleCall()">Schedule Call</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Resources -->
+        <div class="help-resources">
+            <h2>Help Resources</h2>
+            
+            <div class="resource-tabs">
+                <button class="resource-tab active" data-tab="tutorials">Video Tutorials</button>
+                <button class="resource-tab" data-tab="guides">Step-by-Step Guides</button>
+                <button class="resource-tab" data-tab="tips">Pro Tips</button>
+                <button class="resource-tab" data-tab="policies">Policies</button>
+            </div>
+
+            <div class="resource-content active" id="tutorials">
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>How to Place Your First Bid</h4>
+                        <p>A complete video walkthrough of the bidding process for new users.</p>
+                        <a href="#" onclick="playVideo('first-bid')">Watch Video (3:45)</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Creating a Winning Listing</h4>
+                        <p>Learn how to create attractive listings that get more bids and higher prices.</p>
+                        <a href="#" onclick="playVideo('winning-listing')">Watch Video (5:20)</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Understanding Auction Types</h4>
+                        <p>Explore different auction formats and choose the best one for your items.</p>
+                        <a href="#" onclick="playVideo('auction-types')">Watch Video (4:15)</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Mobile App Features</h4>
+                        <p>Discover all the features available on our mobile platform.</p>
+                        <a href="#" onclick="playVideo('mobile-features')">Watch Video (6:30)</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-content" id="guides">
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>Account Verification Guide</h4>
+                        <p>Complete step-by-step instructions for verifying your account and identity.</p>
+                        <a href="#guide-verify">Read Guide</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Payment Methods Setup</h4>
+                        <p>How to add and manage payment methods for buying and selling.</p>
+                        <a href="#guide-payment-setup">Read Guide</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Shipping Calculator Guide</h4>
+                        <p>Learn how to use our shipping calculator and set accurate shipping costs.</p>
+                        <a href="#guide-shipping-calc">Read Guide</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Dispute Resolution Process</h4>
+                        <p>Detailed steps for resolving disputes between buyers and sellers.</p>
+                        <a href="#guide-disputes">Read Guide</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-content" id="tips">
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>Photography Tips for Listings</h4>
+                        <p>Professional photography techniques to make your items stand out.</p>
+                        <a href="#tips-photography">Read Tips</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Bidding Strategies</h4>
+                        <p>Advanced bidding techniques to win more auctions at better prices.</p>
+                        <a href="#tips-bidding">Read Tips</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Timing Your Auctions</h4>
+                        <p>When to list items for maximum visibility and higher final prices.</p>
+                        <a href="#tips-timing">Read Tips</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Building Seller Reputation</h4>
+                        <p>How to build trust and positive feedback as a seller.</p>
+                        <a href="#tips-reputation">Read Tips</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-content" id="policies">
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>Terms of Service</h4>
+                        <p>Our complete terms and conditions for using AuctionHub.</p>
+                        <a href="terms.html">Read Policy</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Seller Agreement</h4>
+                        <p>Detailed agreement for sellers including fees and requirements.</p>
+                        <a href="seller-agreement.html">Read Policy</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Privacy Policy</h4>
+                        <p>How we collect, use, and protect your personal information.</p>
+                        <a href="privacy.html">Read Policy</a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>Prohibited Items List</h4>
+                        <p>Items that cannot be sold on our platform and restrictions.</p>
+                        <a href="#policy-prohibited">Read Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Status -->
+        <div class="status-page">
+            <div class="status-indicator">
+                <i class="fas fa-check-circle"></i>
+                All Systems Operational
+            </div>
+            <h3>System Status</h3>
+            <p>All AuctionHub services are currently running normally. Check our status page for real-time updates on system performance and scheduled maintenance.</p>
+            <a href="#" class="btn-primary" onclick="checkStatus()" style="margin-top: 1rem;">Check Detailed Status</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-gavel"></i> AuctionHub</h3>
+                    <p>Your trusted online auction platform for unique finds and great deals.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#categories">Categories</a></li>
+                        <li><a href="sell.html">Sell Items</a></li>
+                        <li><a href="help.html">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="seller-agreement.html">Seller Agreement</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="privacy.html#cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="help.html#guide-safety">Safety Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AuctionHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Resource tabs functionality
+        const resourceTabs = document.querySelectorAll('.resource-tab');
+        const resourceContents = document.querySelectorAll('.resource-content');
+
+        resourceTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabTarget = tab.getAttribute('data-tab');
+
+                // Remove active class from all tabs and contents
+                resourceTabs.forEach(t => t.classList.remove('active'));
+                resourceContents.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tabTarget).classList.add('active');
+            });
+        });
+
+        // Search functionality
+        document.getElementById('helpSearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const categories = document.querySelectorAll('.help-category');
+            
+            categories.forEach(category => {
+                const text = category.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    category.style.display = 'block';
+                } else {
+                    category.style.display = 'none';
+                }
+            });
+
+            // Also search in resource items
+            const resourceItems = document.querySelectorAll('.resource-item');
+            resourceItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Helper functions for interactive elements
+        function openLiveChat() {
+            alert('Live chat would open here. This is a demo - in a real implementation, this would connect to a live chat service.');
+        }
+
+        function scheduleCall() {
+            alert('Video call scheduling would open here. This would typically integrate with a calendar booking system.');
+        }
+
+        function reportIssue() {
+            const issue = prompt('Please describe the issue you\'re experiencing:');
+            if (issue) {
+                alert('Thank you for your report. Our team will investigate this issue and respond within 24 hours.');
+            }
+        }
+
+        function trackOrder() {
+            const orderNumber = prompt('Please enter your order number:');
+            if (orderNumber) {
+                alert(`Tracking information for order ${orderNumber} would be displayed here.`);
+            }
+        }
+
+        function downloadData() {
+            alert('Your data download request has been submitted. You\'ll receive an email with your data within 24 hours.');
+        }
+
+        function playVideo(videoId) {
+            alert(`Video "${videoId}" would play here. This would typically open a video player or redirect to a video page.`);
+        }
+
+        function checkStatus() {
+            alert('Detailed system status page would open here, showing real-time performance metrics and any ongoing issues.');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

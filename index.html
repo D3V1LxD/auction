@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuctionHub - Online Auction Platform</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/backend-integration.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><i class="fas fa-gavel"></i> AuctionHub</h1>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#auctions">Live Auctions</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="sell.html">Sell Item</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="login.html" class="btn-secondary">Login</a>
+                <a href="signup.html" class="btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Discover Amazing Deals at Our Online Auctions</h2>
+                <p>Bid on unique items, antiques, electronics, and more. Join thousands of bidders in our exciting live auctions!</p>
+                <div class="hero-buttons">
+                    <a href="#auctions" class="btn-primary">Browse Auctions</a>
+                    <a href="sell.html" class="btn-secondary">Start Selling</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-bar">
+                <input type="text" placeholder="Search for items..." class="search-input">
+                <select class="category-select">
+                    <option value="">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="antiques">Antiques</option>
+                    <option value="art">Art & Collectibles</option>
+                    <option value="jewelry">Jewelry</option>
+                    <option value="vehicles">Vehicles</option>
+                    <option value="home">Home & Garden</option>
+                </select>
+                <button class="search-btn"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Auctions -->
+    <section class="featured-auctions" id="auctions">
+        <div class="container">
+            <h2>Live Auctions</h2>
+            <div class="auction-grid">
+                <!-- Auction Item 1 -->
+                <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="RolexSubmariner.jpg" alt="Vintage Watch">
+                        <div class="auction-status live">LIVE</div>
+                    </div>
+                    <div class="auction-info">
+                        <h3>Vintage Rolex Submariner</h3>
+                        <p class="auction-description">Rare 1970s Rolex Submariner in excellent condition</p>
+                        <div class="price-info">
+                            <div class="current-bid">
+                                <span class="label">Current Bid:</span>
+                                <span class="amount">$8,500</span>
+                            </div>
+                            <div class="bid-count">23 bids</div>
+                        </div>
+                        <div class="auction-timer">
+                            <i class="fas fa-clock"></i>
+                            <span class="time-remaining" data-end="2025-10-01T15:30:00">2h 15m remaining</span>
+                        </div>
+                        <button class="btn-primary bid-now" onclick="window.location.href='product.html'">Bid Now</button>
+                    </div>
+                </div>
+
+                <!-- Auction Item 2 -->
+                <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="Rtx4070.jpg" alt="Gaming Laptop">
+                        <div class="auction-status live">LIVE</div>
+                    </div>
+                    <div class="auction-info">
+                        <h3>Gaming Laptop RTX 4080</h3>
+                        <p class="auction-description">High-performance gaming laptop with RTX 4080</p>
+                        <div class="price-info">
+                            <div class="current-bid">
+                                <span class="label">Current Bid:</span>
+                                <span class="amount">$1,850</span>
+                            </div>
+                            <div class="bid-count">15 bids</div>
+                        </div>
+                        <div class="auction-timer">
+                            <i class="fas fa-clock"></i>
+                            <span class="time-remaining" data-end="2025-10-01T18:45:00">5h 30m remaining</span>
+                        </div>
+                        <button class="btn-primary bid-now" onclick="window.location.href='product.html'">Bid Now</button>
+                    </div>
+                </div>
+
+                <!-- Auction Item 3 -->
+                <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="mingvases.jpeg" alt="Antique Vase">
+                        <div class="auction-status ending-soon">ENDING SOON</div>
+                    </div>
+                    <div class="auction-info">
+                        <h3>Ming Dynasty Vase</h3>
+                        <p class="auction-description">Authentic Ming Dynasty porcelain vase</p>
+                        <div class="price-info">
+                            <div class="current-bid">
+                                <span class="label">Current Bid:</span>
+                                <span class="amount">$12,000</span>
+                            </div>
+                            <div class="bid-count">45 bids</div>
+                        </div>
+                        <div class="auction-timer">
+                            <i class="fas fa-clock"></i>
+                            <span class="time-remaining" data-end="2025-09-30T16:00:00">45m remaining</span>
+                        </div>
+                        <button class="btn-primary bid-now" onclick="window.location.href='product.html'">Bid Now</button>
+                    </div>
+                </div>
+
+                <!-- Auction Item 4 -->
+                <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="Ring2C.jpg" alt="Diamond Ring">
+                        <div class="auction-status live">LIVE</div>
+                    </div>
+                    <div class="auction-info">
+                        <h3>2 Carat Diamond Ring</h3>
+                        <p class="auction-description">Certified 2 carat diamond engagement ring</p>
+                        <div class="price-info">
+                            <div class="current-bid">
+                                <span class="label">Current Bid:</span>
+                                <span class="amount">$6,750</span>
+                            </div>
+                            <div class="bid-count">31 bids</div>
+                        </div>
+                        <div class="auction-timer">
+                            <i class="fas fa-clock"></i>
+                            <span class="time-remaining" data-end="2025-10-02T12:00:00">1d 8h remaining</span>
+                        </div>
+                        <button class="btn-primary bid-now" onclick="window.location.href='product.html'">Bid Now</button>
+                    </div>
+                </div>
+
+                <!-- Auction Item 5 -->
+                <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="Mustang.jpg" alt="Classic Car">
+                        <div class="auction-status live">LIVE</div>
+                    </div>
+                    <div class="auction-info">
+                        <h3>1967 Ford Mustang</h3>
+                        <p class="auction-description">Fully restored classic Ford Mustang</p>
+                        <div class="price-info">
+                            <div class="current-bid">
+                                <span class="label">Current Bid:</span>
+                                <span class="amount">$35,000</span>
+                            </div>
+                            <div class="bid-count">67 bids</div>
+                        </div>
+                        <div class="auction-timer">
+                            <i class="fas fa-clock"></i>
+                            <span class="time-remaining" data-end="2025-10-03T20:00:00">3d 6h remaining</span>
+                        </div>
+                        <button class="btn-primary bid-now" onclick="window.location.href='product.html'">Bid Now</button>
+                    </div>
+                </div>
+
+                <!-- Auction Item 6 -->
+                <div class="auction-card">
+                    <div class="auction-image">
+                        <img src="oilpaint.jpg" alt="Art Painting">
+                        <div class="auction-status live">LIVE</div>
+                    </div>
+                    <div class="auction-info">
+                        <h3>Abstract Oil Painting</h3>
+                        <p class="auction-description">Original abstract oil painting by local artist</p>
+                        <div class="price-info">
+                            <div class="current-bid">
+                                <span class="label">Current Bid:</span>
+                                <span class="amount">$850</span>
+                            </div>
+                            <div class="bid-count">12 bids</div>
+                        </div>
+                        <div class="auction-timer">
+                            <i class="fas fa-clock"></i>
+                            <span class="time-remaining" data-end="2025-10-01T22:30:00">8h 15m remaining</span>
+                        </div>
+                        <button class="btn-primary bid-now" onclick="window.location.href='product.html'">Bid Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2>Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Electronics</h3>
+                    <p>Laptops, phones, gadgets</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-gem"></i>
+                    <h3>Jewelry</h3>
+                    <p>Rings, necklaces, watches</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>Art & Collectibles</h3>
+                    <p>Paintings, sculptures, antiques</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-car"></i>
+                    <h3>Vehicles</h3>
+                    <p>Cars, motorcycles, boats</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Home & Garden</h3>
+                    <p>Furniture, decor, tools</p>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-tshirt"></i>
+                    <h3>Fashion</h3>
+                    <p>Clothing, shoes, accessories</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>How AuctionHub Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Browse Auctions</h3>
+                    <p>Explore thousands of items across various categories</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Place Your Bid</h3>
+                    <p>Submit competitive bids on items you want</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Win & Pay</h3>
+                    <p>Win the auction and complete secure payment</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Receive Item</h3>
+                    <p>Get your item delivered safely to your door</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-gavel"></i> AuctionHub</h3>
+                    <p>Your trusted online auction platform for unique finds and great deals.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#categories">Categories</a></li>
+                        <li><a href="sell.html">Sell Items</a></li>
+                        <li><a href="index.html#auctions">Live Auctions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="seller-agreement.html">Seller Agreement</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="privacy.html#cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="help.html#guide-safety">Safety Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AuctionHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bid Modal -->
+    <div id="bidModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeBidModal()">&times;</span>
+            <h2>Place Your Bid</h2>
+            <div id="bidItemDetails">
+                <!-- Item details will be populated here -->
+            </div>
+            <div class="bid-form">
+                <div class="current-bid-display">
+                    <span>Current Highest Bid: </span>
+                    <span id="currentBidAmount">$0</span>
+                </div>
+                <div class="bid-input-group">
+                    <label for="bidAmount">Your Bid Amount:</label>
+                    <input type="number" id="bidAmount" min="0" step="0.01" placeholder="Enter your bid">
+                </div>
+                <div class="bid-buttons">
+                    <button class="btn-secondary" onclick="closeBidModal()">Cancel</button>
+                    <button class="btn-primary" onclick="submitBid()">Submit Bid</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API Configuration -->
+    <script src="js/api-config.js"></script>
+    <!-- Main JavaScript -->
+    <script src="js/auction-main.js"></script>
+</body>
+</html>
