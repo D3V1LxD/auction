@@ -13,8 +13,8 @@ class ApiConfig {
             this.baseURL = 'http://localhost:5000/api';
         } else {
             // Replace 'yourusername' with actual PythonAnywhere username
-            this.baseURL = 'https://yourusername.pythonanywhere.com/api';
-        }
+            this.baseURL = 'https://auctionitsme.pythonanywhere.com/api';
+        } 
         
         // Authentication token storage
         this.authToken = localStorage.getItem('auctionhub_token');
@@ -146,4 +146,5 @@ const api = new ApiConfig();
 // Export for modules (if using)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = ApiConfig;
+
 }
