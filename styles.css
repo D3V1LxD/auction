@@ -383,13 +383,11 @@ body::before {
     line-height: 1.6;
     font-weight: 400;
     animation: slideInRight 1s ease-out 0.9s both;
-}
     opacity: 0.9;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    animation: slideInRight 1s ease-out 0.9s both;
 }
 
 .hero-buttons {
